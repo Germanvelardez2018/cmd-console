@@ -1,11 +1,11 @@
 require('colors');
-
+const {menuOptions} = require('./utils/inquirer')
 
 
 
 const Main = async()=>{
-    console.clear();
-    console.log("Console mqtt");
+    
+    let opt = await menuOptions("Menu options");
 
 
 
