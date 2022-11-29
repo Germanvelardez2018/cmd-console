@@ -1,11 +1,18 @@
-require('colors');
+
+
+
+
+
+
+const {Menu} = require("./utils/display")
 
 
 
 
 const Main = async()=>{
-    console.clear();
-    console.log("Console mqtt");
+
+    let opt = Menu();
+    console.log("main: ",opt);
 
 
 
