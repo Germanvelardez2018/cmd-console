@@ -4,15 +4,20 @@
 
 
 
-const {Menu} = require("./utils/display")
+const {menu,pause} = require("./utils/display")
 
 
 
 
 const Main = async()=>{
 
-    let opt = Menu();
+    let opt = "";
+    while(opt != '0'){
+    opt =  await menu();
     console.log("main: ",opt);
+    opt =  await pause("Press 0 to exit:  ");
+    }
+    
 
 
 
