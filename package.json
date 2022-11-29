@@ -1,0 +1,16 @@
+{
+  "name": "mqtt-interface",
+  "version": "1.0.0",
+  "description": "Console interface for mqtt services",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "mqtt",
+    "interface",
+    "iot"
+  ],
+  "author": "German Velardez",
+  "license": "MIT"
+}
