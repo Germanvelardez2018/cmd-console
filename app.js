@@ -1,9 +1,9 @@
 require('colors');
-const {menuOptions, pause} = require('./utils/inquirer')
+const {menuOptions, pause, getAnswer, getCommand} = require('./utils/inquirer')
 const MqttServices = require('./utils/mqtt_services');
 
 
-const url= "URL";
+const url= "mqtt://broker.hivemq.com";
 const user = "USER";
 const password = "PASS";
 
@@ -22,6 +22,7 @@ const Main = async()=>{
     
      MqttServices
      let mqtt = new MqttServices(url,user,password);
+     let publicedMessage =[];
 
 
 
@@ -33,21 +34,34 @@ const Main = async()=>{
        switch(opt.opcion){
 
           case 1:
-          console.log("opcion 1")     
+          console.log("opcion 1");
+          mqtt.connect(URL);    
           break;
 
           case 2:
-          console.log("opcion 2")     
+          console.log("opcion 2");
+          let opt = await getCommand();
+          console.log(`Se envio comandos ${opt.comando}`)
+          mqtt.sendMessage("CMD",`${opt.comando}`)    
           break;
 
           case 3:
           console.log("opcion 3")     
           break;
+
           case 4:
           console.log("opcion 4")     
           break;
           case 5:
-          console.log("opcion 5")     
+          console.log("opcion 5");
+          console.clear();
+          console.log("Mensaje publicados:");
+          for(const msg of publicedMessage)   {
+               console.log(msg)
+          }  
+          break;
+          case 6:
+          console.log("opcion 6")     
           break;
 
 

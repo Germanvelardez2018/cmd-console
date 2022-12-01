@@ -2,7 +2,7 @@ const mqtt = require('mqtt');
 
 
 class MqttServices {
-    client = null;
+    client = false;
 
     constructor(url,user,password){
         this.url = url;
@@ -34,7 +34,7 @@ class MqttServices {
 
 
     sendMessage = (topic,message)=>{
-    client.publish(topic,message,{qos:0,retein:false})
+    this.client.publish(topic,message,{qos:0,retein:false})
 }
 
 }
