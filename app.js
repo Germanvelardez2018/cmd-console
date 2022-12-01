@@ -42,7 +42,8 @@ const Main = async()=>{
           console.log("opcion 2");
           let opt = await getCommand();
           console.log(`Se envio comandos ${opt.comando}`)
-          mqtt.sendMessage("CMD",`${opt.comando}`)    
+          mqtt.sendMessage("CMD",`${opt.comando}`)  
+          publicedMessage.push(`Topic ${"CMD".green} => ${(""+opt.comando).green}`)  
           break;
 
           case 3:
@@ -57,7 +58,7 @@ const Main = async()=>{
           console.clear();
           console.log("Mensaje publicados:");
           for(const msg of publicedMessage)   {
-               console.log(msg)
+               console.log("\r\t\t",msg)
           }  
           break;
           case 6:
