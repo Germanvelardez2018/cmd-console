@@ -8,7 +8,7 @@ class MqttServices {
         this.url = url;
         this.user = user ;
         this.password = password;
-
+        this.client = mqtt.connect(this.url);
     }
 
 
@@ -23,7 +23,13 @@ class MqttServices {
 }
 
 
-    subcribeTopic = (topic) =>{
+    subcribeTopic = (t,callback) =>{
+        this.client.subscribe(t,  err =>{if(err)console.log("Error en sub")} );
+
+
+        this.client.on('message', (topic,message)=>{
+            callback(topic,message);
+        } );
 
 }
 
@@ -38,9 +44,6 @@ class MqttServices {
 }
 
 }
-
-
-
 
 
 module.exports =  MqttServices

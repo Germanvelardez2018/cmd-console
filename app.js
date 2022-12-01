@@ -7,12 +7,18 @@ const url= "mqtt://broker.hivemq.com";
 const user = "USER";
 const password = "PASS";
 
+let mqtt = false
+      
+let publicedMessage =[];
 
 
 
 
-
-
+const callbackSub =  (topic, message)=> {
+     let msg = ` ${message.toString().green} <= ${topic.green}`;
+     mqtt.sendMessage("CMD",msg)
+     publicedMessage.push(msg)  
+     }
 
 
 
@@ -20,9 +26,16 @@ const password = "PASS";
 
 const Main = async()=>{
     
-     MqttServices
-     let mqtt = new MqttServices(url,user,password);
-     let publicedMessage =[];
+     
+     mqtt = new MqttServices(url,user,password);
+     mqtt.subcribeTopic("SIMO_INIT",callbackSub);
+     mqtt.subcribeTopic("X1111",callbackSub);
+    
+     
+ 
+
+
+    
 
 
 
