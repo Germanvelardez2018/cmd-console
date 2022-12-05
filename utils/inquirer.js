@@ -6,6 +6,7 @@ const listCommands = [{
     type: 'list',
     name: 'comando',
     message: '> Seleccione un comando\n\r',
+    pageSize: 10,
     choices:[  
         {value: 1 , name:"1.".green +"Configurar intervalo: 1 minuto "},
         {value: 2 , name:"2.".green +"Configurar intervalo: 5 minuto"},
@@ -15,7 +16,9 @@ const listCommands = [{
         {value: 6 , name:"6.".green +"Calibrar dispositivo"},
         {value: 7 , name:"7.".green +"Forzar extraccion de datos"},
         {value: 8 , name:"8.".green +"Maxima cantidad de datos almacenados: 20"},
-        {value: 9 , name:"9.".green +"Maxima cantidad de datos almacenados: 50"}
+        {value: 9 , name:"9.".green +"Maxima cantidad de datos almacenados: 50"},
+        {value: 0 , name:"0.".green +"Cancelar"}
+
         ]
     }
 ]

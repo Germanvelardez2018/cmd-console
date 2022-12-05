@@ -36,13 +36,20 @@ const Main = async()=>{
        opt = await menuOptions("Menu de opciones");
 
        switch(opt.opcion){
-          case 1:;
+          case 0:
+               process.exit(1);
+               break;
+
+          case 1:
           break;
 
           case 2:;
                let opt = await getCommand();
-               wall.pushElementIntoWall(`Comando: ${(""+opt.comando).green} enviado al topic: ${"CMD".green} => `)  
-               mqtt.sendMessage("CMD",`${opt.comando}`)  
+               if(opt.comando !== 0){
+                    wall.pushElementIntoWall(`Comando: ${(""+opt.comando).green} enviado al topic: ${"CMD".green} => `)  
+                    mqtt.sendMessage("CMD",`${opt.comando}`)  
+               }
+               
           break;
 
           case 3:     
@@ -66,7 +73,7 @@ const Main = async()=>{
        wall.deinit();  
 
     }
-    while(opt.opcion !== 0);
+    while(true);
 
 
 
