@@ -44,7 +44,7 @@ const pause = async()=>{
                    {
                    type:'input',
                    name:'options',
-                   message:' Press enter to continue',
+                   message:' ',
                    } 
                 ]);
 

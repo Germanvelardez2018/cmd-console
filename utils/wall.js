@@ -33,13 +33,17 @@ class Wall{
 
     refresh(newValue){
 
-        if(newValue > this.numberRow){
-            console.log("\b\r\t",this.content[this.numberRow]);
+        if(this.enable == true){
+            if(newValue > this.numberRow){
+                console.log("\b\r\t",this.content[this.numberRow]);
+            }
+            //borrar ultima linea
+            else{
+                this.init();
+            }
+
         }
-        //borrar ultima linea
-        else{
-            this.init();
-        }
+        
         this.numberRow = newValue;
 
     }
@@ -79,4 +83,4 @@ setTimeout(() => { Test.pushElementIntoWall("tercera nueva linea") }, 6000);
 }
 
 
-Main();
+//Main();

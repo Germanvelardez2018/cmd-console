@@ -1,8 +1,10 @@
 const mqtt = require('mqtt');
 
 
+
 class MqttServices {
     client = false;
+    cb = ()=>{};
 
     constructor(url,user,password){
         this.url = url;
@@ -14,34 +16,34 @@ class MqttServices {
 
     connect = ()=>{
         this.client = mqtt.connect(this.url);
-
-}
-
+        this.client.on('message', (topic,message)=>{
+        this.cb(topic,message);
+        });
+    }
 
     disconnect = ()=>{
+    }
 
-}
+    setCallback = (cb)=>{
+        this.cb = cb;
+    }
 
 
-    subcribeTopic = (t,callback) =>{
+    subcribeTopic = (t) =>{
         this.client.subscribe(t,  err =>{if(err)console.log("Error en sub")} );
-
-
-        this.client.on('message', (topic,message)=>{
-            callback(topic,message);
-        } );
-
-}
+        console.log("subscribio a ",t);
+     }
 
 
     desucribeTopic = (topic) =>{
 
-}
+    }
 
 
     sendMessage = (topic,message)=>{
-    this.client.publish(topic,message,{qos:0,retein:false})
-}
+        this.client.publish(topic,message,{qos:0,retein:false});
+    }
+
 
 }
 

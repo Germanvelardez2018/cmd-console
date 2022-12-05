@@ -1,3 +1,5 @@
+const Wall  = require('./utils/wall')
+
 require('colors');
 const {menuOptions, pause, getAnswer, getCommand} = require('./utils/inquirer')
 const MqttServices = require('./utils/mqtt_services');
@@ -9,73 +11,50 @@ const password = "PASS";
 
 let mqtt = false
       
-let publicedMessage =[];
 
+const wall = new Wall([],title="Consola de comandos");
 
 
 
 const callbackSub =  (topic, message)=> {
-     let msg = ` ${message.toString().green} <= ${topic.green}`;
-     mqtt.sendMessage("CMD",msg)
-     publicedMessage.push(msg)  
+     let msg = ` Respuesta recibida: \r\n\t${message.toString().green} <= ${topic.green} `;
+     wall.pushElementIntoWall(msg);  
      }
 
 
-
-
-
 const Main = async()=>{
-    
-     
      mqtt = new MqttServices(url,user,password);
-     mqtt.subcribeTopic("SIMO_INIT",callbackSub);
-     mqtt.subcribeTopic("X1111",callbackSub);
-    
-     
- 
-
-
-    
-
+     mqtt.setCallback(callbackSub);
+     mqtt.connect(URL);    
+     mqtt.subcribeTopic("SIMO_INIT");
+     mqtt.subcribeTopic("X1111");
+   //  mqtt.subcribeTopic("CMD");
 
 
    let opt = 0;
     do{
        opt = await menuOptions("Menu de opciones");
 
-
        switch(opt.opcion){
-
-          case 1:
-          console.log("opcion 1");
-          mqtt.connect(URL);    
+          case 1:;
           break;
 
-          case 2:
-          console.log("opcion 2");
-          let opt = await getCommand();
-          console.log(`Se envio comandos ${opt.comando}`)
-          mqtt.sendMessage("CMD",`${opt.comando}`)  
-          publicedMessage.push(`Topic ${"CMD".green} => ${(""+opt.comando).green}`)  
+          case 2:;
+               let opt = await getCommand();
+               wall.pushElementIntoWall(`Comando: ${(""+opt.comando).green} enviado al topic: ${"CMD".green} => `)  
+               mqtt.sendMessage("CMD",`${opt.comando}`)  
           break;
 
-          case 3:
-          console.log("opcion 3")     
+          case 3:     
           break;
 
-          case 4:
-          console.log("opcion 4")     
+          case 4:     
           break;
-          case 5:
-          console.log("opcion 5");
-          console.clear();
-          console.log("Mensaje publicados:");
-          for(const msg of publicedMessage)   {
-               console.log("\r\t\t",msg)
-          }  
+          case 5:;
+               wall.init();
+               
           break;
-          case 6:
-          console.log("opcion 6")     
+          case 6:     
           break;
 
 
@@ -83,7 +62,8 @@ const Main = async()=>{
                console.log("default opcion")
                break;
        }
-       await pause();   
+       await pause(); 
+       wall.deinit();  
 
     }
     while(opt.opcion !== 0);
