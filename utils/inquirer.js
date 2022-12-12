@@ -13,7 +13,7 @@ const listCommands = [{
         {value: 3 , name:"3.".green +"Configurar intervalo: 10 minuto"}  ,
         {value: 4 , name:"4.".green +"Configurar intervalo: 30 minuto "},
         {value: 5 , name:"5.".green +"Configurar intervalo: 60 minuto"},
-        {value: 6 , name:"6.".green +"Calibrar dispositivo"},
+        {value: 6 , name:"6.".green +"Obtener estado del dispositivo"},
         {value: 7 , name:"7.".green +"Forzar extraccion de datos"},
         {value: 8 , name:"8.".green +"Maxima cantidad de datos almacenados: 20"},
         {value: 9 , name:"9.".green +"Maxima cantidad de datos almacenados: 50"},
