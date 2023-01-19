@@ -35,13 +35,13 @@ class MqttServices {
      }
 
 
-    desucribeTopic = (topic) =>{
+    desuscribeTopic = (topic) =>{
 
     }
 
 
     sendMessage = (topic,message)=>{
-        this.client.publish(topic,message,{qos:0,retein:false});
+        this.client.publish(topic,message,{qos:2,retain:true});
     }
 
 

@@ -26,9 +26,10 @@ const Main = async()=>{
      mqtt = new MqttServices(url,user,password);
      mqtt.setCallback(callbackSub);
      mqtt.connect(URL);    
-     mqtt.subcribeTopic("SIMO_INIT");
-     mqtt.subcribeTopic("X1111");
-   //  mqtt.subcribeTopic("CMD");
+     mqtt.subcribeTopic("DEVICE");
+     mqtt.subcribeTopic("GPS");
+     mqtt.subcribeTopic("CMD");
+     
 
 
    let opt = 0;
@@ -46,7 +47,7 @@ const Main = async()=>{
           case 2:;
                let opt = await getCommand();
                if(opt.comando !== 0){
-                    wall.pushElementIntoWall(`Comando: ${(""+opt.comando).green} enviado al topic: ${"CMD".green} => `)  
+                    //wall.pushElementIntoWall(`Comando: ${(""+opt.comando).green} enviado al topic: ${"CMD".green} => `)  
                     mqtt.sendMessage("CMD",`${opt.comando}`)  
                }
                
@@ -57,7 +58,7 @@ const Main = async()=>{
 
           case 4:     
           break;
-          case 5:;
+          case 5:
                wall.init();
                
           break;

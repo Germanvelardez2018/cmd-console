@@ -7,6 +7,8 @@ class Wall{
     content = []
     numberRow = 0;
     enable  = false;
+    
+
 
     constructor(content = [],title = "Wall:"){
         this.content = content;
@@ -49,7 +51,9 @@ class Wall{
     }
 
     pushElementIntoWall(element){
-        this.content.push(element);
+        const date = new Date();
+        let newLine = element +"["+ date.getHours()+":"+date.getMinutes()+"]";
+        this.content.push(newLine);
         this.refresh(this.numberRow +1)
 
     }
@@ -70,15 +74,6 @@ module.exports = Wall
 
 
 const Main =()=>{
-elementTest = ["Hola mundo", "Segundo parrafo", "Tercer parrafo"]
-const Test =  new Wall(elementTest);
-Test.init();
-
-setTimeout(() => { Test.pushElementIntoWall("nueva linea") }, 1500);
-
-setTimeout(() => { Test.pushElementIntoWall("segunda nueva linea") }, 2000);
-setTimeout(() => {  Test.popElementIntoWall(); }, 4000);
-setTimeout(() => { Test.pushElementIntoWall("tercera nueva linea") }, 6000);
 
 }
 
