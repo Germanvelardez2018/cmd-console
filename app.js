@@ -1,6 +1,29 @@
 const Wall  = require('./utils/wall')
 
+
+
+
 require('colors');
+
+
+
+
+
+cmd_names = [
+    "",
+    "Configurar intervalo: 20 minuto ",
+    "Configurar intervalo: 40 minuto",
+    "Configurar intervalo: 60 minuto",
+    "Maxima cantidad de datos almacenados: 20",
+    "Maxima cantidad de datos almacenados: 50" ,
+    "Forzar extraccion de datos",
+    "- Agregar opcion -",
+    "- Agregar opcion -",
+    "- Agregar opcion -",
+    "Cancelar"
+]
+
+
 const {menuOptions, pause, getAnswer, getCommand} = require('./utils/inquirer')
 const MqttServices = require('./utils/mqtt_services');
 
@@ -17,7 +40,9 @@ const wall = new Wall([],title="Consola de comandos");
 
 
 const callbackSub =  (topic, message)=> {
-     let msg = ` Respuesta recibida: \r\n\t${message.toString().green} <= ${topic.green} `;
+     const date = new Date();
+    
+     let msg = ` Device: ${message.toString().green}  ${date.getHours()} :${date.getMinutes()} <= ${topic.green} `;
      wall.pushElementIntoWall(msg);  
      }
 
@@ -26,9 +51,9 @@ const Main = async()=>{
      mqtt = new MqttServices(url,user,password);
      mqtt.setCallback(callbackSub);
      mqtt.connect(URL);    
-     mqtt.subcribeTopic("DEVICE");
-     mqtt.subcribeTopic("GPS");
-     mqtt.subcribeTopic("CMD");
+     //mqtt.subcribeTopic("DEVICE");
+     mqtt.subcribeTopic("D");
+   // mqtt.subcribeTopic("CMD");
      
 
 
@@ -47,7 +72,7 @@ const Main = async()=>{
           case 2:;
                let opt = await getCommand();
                if(opt.comando !== 0){
-                    //wall.pushElementIntoWall(`Comando: ${(""+opt.comando).green} enviado al topic: ${"CMD".green} => `)  
+                    wall.pushElementIntoWall(`Comando: ${cmd_names[opt.comando].toUpperCase().red} `)  
                     mqtt.sendMessage("CMD",`${opt.comando}`)  
                }
                

@@ -1,6 +1,11 @@
 require("colors")
 
 
+
+
+
+
+
 class Wall{
 
     // EL contenido que se dibujara en la pantalla
@@ -52,7 +57,7 @@ class Wall{
 
     pushElementIntoWall(element){
         const date = new Date();
-        let newLine = element +"["+ date.getHours()+":"+date.getMinutes()+"]";
+        let newLine = element ;
         this.content.push(newLine);
         this.refresh(this.numberRow +1)
 

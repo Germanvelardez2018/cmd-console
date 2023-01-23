@@ -8,15 +8,15 @@ const listCommands = [{
     message: '> Seleccione un comando\n\r',
     pageSize: 10,
     choices:[  
-        {value: 1 , name:"1.".green +"Configurar intervalo: 15 minuto "},
-        {value: 2 , name:"2.".green +"Configurar intervalo: 30 minuto"},
+        {value: 1 , name:"1.".green +"Configurar intervalo: 20 minuto "},
+        {value: 2 , name:"2.".green +"Configurar intervalo: 40 minuto"},
         {value: 3 , name:"3.".green +"Configurar intervalo: 60 minuto"}  ,
-        {value: 4 , name:"4.".green +"Maxima cantidad de datos almacenados: 10"},
-        {value: 5 , name:"5.".green +"Maxima cantidad de datos almacenados: 20" },
+        {value: 4 , name:"4.".green +"Maxima cantidad de datos almacenados: 20"},
+        {value: 5 , name:"5.".green +"Maxima cantidad de datos almacenados: 50" },
         {value: 6 , name:"6.".green +"Forzar extraccion de datos"},
-        {value: 7 , name:"7.".green +"- Agregar opcion -"},
-        {value: 8 , name:"8.".green +"- Agregar opcion -"},
-        {value: 9 , name:"9.".green +"- Agregar opcion -"},
+        {value: 7 , name:"7.".green +"- - -"},
+        {value: 8 , name:"8.".green +"- - -"},
+        {value: 9 , name:"9.".green +"- - -"},
         {value: 0 , name:"0.".green +"Cancelar"}
 
         ]
