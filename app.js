@@ -1,5 +1,5 @@
 const Wall  = require('./utils/wall')
-
+const Format = require('./utils/format.js')
 
 
 
@@ -11,15 +11,15 @@ require('colors');
 
 cmd_names = [
     "",
-    "Configurar intervalo: 20 minuto ",
-    "Configurar intervalo: 40 minuto",
-    "Configurar intervalo: 60 minuto",
-    "Maxima cantidad de datos almacenados: 20",
-    "Maxima cantidad de datos almacenados: 50" ,
-    "Forzar extraccion de datos",
-    "- Agregar opcion -",
-    "- Agregar opcion -",
-    "- Agregar opcion -",
+    "[1]Configurar intervalo: 20 minuto ",
+    "[2]Configurar intervalo: 40 minuto",
+    "[3]Configurar intervalo: 60 minuto",
+    "[4]Maxima cantidad de datos almacenados: 20",
+    "[5]Maxima cantidad de datos almacenados: 50" ,
+    "[6]Forzar extraccion de datos",
+    "- delete buffer cmd- -",
+    "- delete buffer cmd- -",
+    "- delete buffer cmd- -",
     "Cancelar"
 ]
 
@@ -42,7 +42,7 @@ const wall = new Wall([],title="Consola de comandos");
 const callbackSub =  (topic, message)=> {
      const date = new Date();
     
-     let msg = ` Device: ${message.toString().green}  ${date.getHours()} :${date.getMinutes()} <= ${topic.green} `;
+     let msg = ` Device: ${Format.formateStatus(message.toString()).green}  ${date.getHours()} :${date.getMinutes()} <= ${topic.green} `;
      wall.pushElementIntoWall(msg);  
      }
 

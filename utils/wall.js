@@ -76,11 +76,3 @@ class Wall{
 module.exports = Wall
 
 
-
-
-const Main =()=>{
-
-}
-
-
-//Main();
