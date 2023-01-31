@@ -41,8 +41,8 @@ const wall = new Wall([],title="Consola de comandos");
 
 const callbackSub =  (topic, message)=> {
      const date = new Date();
-    
-     let msg = ` Device: ${Format.formateStatus(message.toString()).green}  ${date.getHours()} :${date.getMinutes()} <= ${topic.green} `;
+     let nmea = message.toString().startsWith('>');
+     let msg = ` Device: ${(nmea == false)?(Format.formateStatus(message.toString())):(Format.getDataFromNmea(message.toString()))}  ${date.getHours()} :${date.getMinutes()} <= ${topic.green} `;
      wall.pushElementIntoWall(msg);  
      }
 
@@ -89,7 +89,6 @@ const Main = async()=>{
           break;
           case 6:     
           break;
-
 
           default:
                console.log("default opcion")

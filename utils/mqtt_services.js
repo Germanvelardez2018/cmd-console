@@ -43,9 +43,6 @@ class MqttServices {
     sendMessage = (topic,message)=>{
         this.client.publish(topic,message,{qos:2,retain:true});
     }
-
-
 }
-
 
 module.exports =  MqttServices
