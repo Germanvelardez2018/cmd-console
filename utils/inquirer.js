@@ -1,3 +1,4 @@
+const { green } = require("colors");
 const inquirer = require("inquirer");
 require('colors')
 
@@ -14,9 +15,9 @@ const listCommands = [{
         {value: 4 , name:"4.".green +"Maxima cantidad de datos almacenados: 20"},
         {value: 5 , name:"5.".green +"Maxima cantidad de datos almacenados: 50" },
         {value: 6 , name:"6.".green +"Forzar extraccion de datos"},
-        {value: 7 , name:"7.".green +"- - -"},
-        {value: 8 , name:"8.".green +"- - -"},
-        {value: 9 , name:"9.".green +"- - -"},
+        {value: 7 , name:"7.".green +"Modo Intermitente (1m check)"},
+        {value: 8 , name:"8.".green +"Modo Normal (15m check)"},
+        {value: 9 , name:"9.".green +"Modo Larga duraccion (30m check)"},
         {value: 0 , name:"0.".green +"Cancelar"}
 
         ]

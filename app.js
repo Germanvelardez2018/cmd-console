@@ -11,15 +11,15 @@ require('colors');
 
 cmd_names = [
     "",
-    "[1]Configurar intervalo: 20 minuto ",
-    "[2]Configurar intervalo: 40 minuto",
-    "[3]Configurar intervalo: 60 minuto",
+    "[1]Configurar intervalo: 2 Checks",
+    "[2]Configurar intervalo: 4 Checks",
+    "[3]Configurar intervalo: 6 Checks",
     "[4]Maxima cantidad de datos almacenados: 20",
     "[5]Maxima cantidad de datos almacenados: 50" ,
     "[6]Forzar extraccion de datos",
-    "- delete buffer cmd- -",
-    "- delete buffer cmd- -",
-    "- delete buffer cmd- -",
+    "[7]Modo intermitente (1m check)",
+    "[1]Modo intermitente (10m check)",
+    "[9]Modo intermitente (30m check)",
     "Cancelar"
 ]
 
