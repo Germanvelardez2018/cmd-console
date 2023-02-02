@@ -9,15 +9,15 @@ const listCommands = [{
     message: '> Seleccione un comando\n\r',
     pageSize: 10,
     choices:[  
-        {value: 1 , name:"1.".green +"Configurar intervalo: 20 minuto "},
-        {value: 2 , name:"2.".green +"Configurar intervalo: 40 minuto"},
-        {value: 3 , name:"3.".green +"Configurar intervalo: 60 minuto"}  ,
+        {value: 1 , name:"1.".green +"Intervalo de muestreo: Cada 2 Check "},
+        {value: 2 , name:"2.".green +"Intervalo de muestreo: Cada 4 Check"},
+        {value: 3 , name:"3.".green +"Intervalo de muestreo: Cada 6 Check"}  ,
         {value: 4 , name:"4.".green +"Maxima cantidad de datos almacenados: 20"},
         {value: 5 , name:"5.".green +"Maxima cantidad de datos almacenados: 50" },
         {value: 6 , name:"6.".green +"Forzar extraccion de datos"},
-        {value: 7 , name:"7.".green +"Modo Intermitente (1m check)"},
-        {value: 8 , name:"8.".green +"Modo Normal (15m check)"},
-        {value: 9 , name:"9.".green +"Modo Larga duraccion (30m check)"},
+        {value: 7 , name:"7.".green +"Modo Intermitente Check cada 1 minuto  "},
+        {value: 8 , name:"8.".green +"Modo Normal Check cada 15 minutos  "},
+        {value: 9 , name:"9.".green +"Modo Larga duraccion Check cada 30 minutos  "},
         {value: 0 , name:"0.".green +"Cancelar"}
 
         ]

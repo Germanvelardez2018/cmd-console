@@ -57,30 +57,28 @@ const convBatteryLevel = (vb)=>{
 // 4.2 a 2.8    tenemos 100   1,4v /100
 
 
-const getDataFromNmea = (nmea)=>{
-    const get_acelerometer= (frame)=>{
-        [temp,x,y,z]=frame.split(",")
-        return `\n ${"MPU6050"}\n\ttemp:${temp} x:${x} y:${y} z:${z}\r\n`
-    }
+const getDataFromNmea = (frameData)=>{
 
-
-    const get_data = (data)=>{
-        elements = data.split(",")
-        buffer ="\n\tInfo NMEA"
-        for(let i = 0; i< elements.length; i++){
-            buffer += `\n\t${DATA_FIELD_NMEA[i]}:${elements[i]}`
-        } 
-        return buffer
-
-    }
-    [data,temp]=nmea.split(":")
-
-
-    return (`${get_data(data)} \r\t\n${get_acelerometer(temp)}`)
+        const gettxyz= (s)=>{
+            if(s == undefined) return ""
+            const [t,x,y,z] = s.split(",")
+            return `${"Temperatura".underline.gray} :${t.green}\n\r\t${'x'.underline.gray}: ${x.green}\n\r\t${'y'.underline.gray}: ${y.green}\n\r\t${'z'.underline.gray}: ${z.green}`;
+        }
+        const getData = (data)=>{
+            let elements = data.split(",")
+            buffer ="\n\tNMEA".bgWhite.underline.gray
+            for(let i = 0; i< elements.length; i++){
+                buffer += `\n\t${DATA_FIELD_NMEA[i].underline.gray}:${elements[i].green}`
+            } 
+            return buffer
+        }
+    const [nmea,sensor]=frameData.split(":")
+   // return (`n${nmea} s ${sensor}`)
+    return (`${getData(nmea)} \n\r\t${gettxyz(sensor)} ${"\n".bgWhite.underline.gray}`)
 }
 
 
-
+let dd ="27.49,0.00,0.01,1.00"
 
 status_frame ="C:9/20,I:20,VB:3.22V ,LCMD:6"
 
@@ -110,10 +108,6 @@ const formateStatus = (status)=>{
 
 
 
-formateStatus(status_frame)
-//date_format('20230130082246.000')
-data = getDataFromNmea(nmea)
-console.log(data)
 
 module.exports = {
     formateStatus,

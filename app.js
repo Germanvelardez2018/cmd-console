@@ -11,15 +11,15 @@ require('colors');
 
 cmd_names = [
     "",
-    "[1]Configurar intervalo: 2 Checks",
-    "[2]Configurar intervalo: 4 Checks",
-    "[3]Configurar intervalo: 6 Checks",
+    "[1]Intervalo de muestreo: Cada 2 Checks",
+    "[2]Intervalo de muestreo: Cada 4 Checks",
+    "[3]Intervalo de muestreo: Cada 6 Checks",
     "[4]Maxima cantidad de datos almacenados: 20",
     "[5]Maxima cantidad de datos almacenados: 50" ,
     "[6]Forzar extraccion de datos",
-    "[7]Modo intermitente (1m check)",
-    "[1]Modo intermitente (10m check)",
-    "[9]Modo intermitente (30m check)",
+    "[7]Modo intermitente Check cada 1 minuto",
+    "[1]Modo intermitente Check cada 15 minutos",
+    "[9]Modo intermitente Check cada 30 minutos",
     "Cancelar"
 ]
 
@@ -40,9 +40,36 @@ const wall = new Wall([],title="Consola de comandos");
 
 
 const callbackSub =  (topic, message)=> {
-     const date = new Date();
-     let nmea = message.toString().startsWith('>');
-     let msg = ` Device: ${(nmea == false)?(Format.formateStatus(message.toString())):(Format.getDataFromNmea(message.toString()))}  ${date.getHours()} :${date.getMinutes()} <= ${topic.green} `;
+     const d = new Date();
+     const h = d.getHours()
+     const m = d.getMinutes()
+     const day = d.getDay()
+     const month = d.getMonth()
+     const date =`|${day.toString().gray}${("/0"+month).gray} |${h}:${m}|`
+
+     let msg =''
+     message = message.toString() 
+     switch(topic){
+          case 'GPS': // Tramas de datos          
+          data = message.split('>')
+         // wall.pushElementIntoWall(data)
+               for(const nmea of data){
+                  wall.pushElementIntoWall(date)
+                  wall.pushElementIntoWall(Format.getDataFromNmea(nmea));  
+               }
+               break
+
+          case 'S': // Estado del dispositivo
+               msg =` ${Format.formateStatus(message)} ${date}`
+               break
+
+          case 'RCMD': // Retorno de comandos
+               msg =`retorno de comando:${message}`
+               break
+
+          default:
+               break
+     }
      wall.pushElementIntoWall(msg);  
      }
 
@@ -51,9 +78,9 @@ const Main = async()=>{
      mqtt = new MqttServices(url,user,password);
      mqtt.setCallback(callbackSub);
      mqtt.connect(URL);    
-     //mqtt.subcribeTopic("DEVICE");
-     mqtt.subcribeTopic("D");
-   // mqtt.subcribeTopic("CMD");
+     mqtt.subcribeTopic("GPS");
+     mqtt.subcribeTopic("S");
+     mqtt.subcribeTopic("CMD");
      
 
 
