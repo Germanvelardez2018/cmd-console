@@ -48,7 +48,7 @@ const convBatteryLevel = (vb)=>{
         return t.match(regex)[0];
       }
     const voltaje = parseFloat(vb)
-    plevel = ((voltaje- VBMIN)/1.4)*100
+    plevel = ((voltaje- VBMIN)/1.4)*100*(100/102.85)
 
     return twoDec(plevel)+" %"
 
@@ -65,7 +65,7 @@ const getDataFromNmea = (frameData)=>{
             return `${"Temperatura".underline.gray} :${t.green}\n\r\t${'x'.underline.gray}: ${x.green}\n\r\t${'y'.underline.gray}: ${y.green}\n\r\t${'z'.underline.gray}: ${z.green}`;
         }
         const getData = (data)=>{
-            let elements = data.split(",")
+            let elements = data.split(",").slice(2,6)
             buffer ="\n\tNMEA".bgWhite.underline.gray
             for(let i = 0; i< elements.length; i++){
                 buffer += `\n\t${DATA_FIELD_NMEA[i].underline.gray}:${elements[i].green}`
