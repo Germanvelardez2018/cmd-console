@@ -9,17 +9,29 @@ require('colors');
 
 
 
+
+
+         
+
+
+
+
+
+
+
+
+
 cmd_names = [
-    "",
-    "[1]Intervalo de muestreo: Cada 2 Checks",
-    "[2]Intervalo de muestreo: Cada 4 Checks",
-    "[3]Intervalo de muestreo: Cada 6 Checks",
-    "[4]Maxima cantidad de datos almacenados: 20",
-    "[5]Maxima cantidad de datos almacenados: 50" ,
-    "[6]Forzar extraccion de datos",
-    "[7]Modo intermitente Check cada 1 minuto",
-    "[1]Modo intermitente Check cada 15 minutos",
-    "[9]Modo intermitente Check cada 30 minutos",
+     "",
+     "Intervalo 5 minutos ",
+     "Intervalo 15 minutos ",
+     "Intervalo 30 minutos ",
+     "Intervalo 60 minutos ",
+     "Almacenar 50 ",
+     "Almacenar 150 ",
+     "Almacenar 250 ",
+     "Forzar descarga de datos ",
+     "Modo test comandos",
     "Cancelar"
 ]
 
@@ -49,10 +61,12 @@ const callbackSub =  (topic, message)=> {
 
      let msg =''
      message = message.toString() 
+
      switch(topic){
-          case 'GPS': // Tramas de datos          
+          case 'DATA': // Tramas de datos          
+                    
           data = message.split('>')
-         // wall.pushElementIntoWall(data)
+      
                for(const nmea of data){
                   wall.pushElementIntoWall(date)
                   wall.pushElementIntoWall(Format.getDataFromNmea(nmea));  
@@ -60,11 +74,14 @@ const callbackSub =  (topic, message)=> {
                break
 
           case 'S': // Estado del dispositivo
+
                msg =` ${Format.formateStatus(message)} ${date}`
+               msg =` ${message} ${date}`
+
                break
 
           case 'RCMD': // Retorno de comandos
-               msg =`retorno de comando:${message}`
+               msg =`ret:${message}`
                break
 
           default:
@@ -78,9 +95,9 @@ const Main = async()=>{
      mqtt = new MqttServices(url,user,password);
      mqtt.setCallback(callbackSub);
      mqtt.connect(URL);    
-     mqtt.subcribeTopic("GPS");
+     mqtt.subcribeTopic("DATA");
      mqtt.subcribeTopic("S");
-     mqtt.subcribeTopic("CMD");
+     mqtt.subcribeTopic("RCMD");
      
 
 

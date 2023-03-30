@@ -9,20 +9,23 @@ const listCommands = [{
     message: '> Seleccione un comando\n\r',
     pageSize: 10,
     choices:[  
-        {value: 1 , name:"1.".green +"Intervalo de muestreo: Cada 2 Check "},
-        {value: 2 , name:"2.".green +"Intervalo de muestreo: Cada 4 Check"},
-        {value: 3 , name:"3.".green +"Intervalo de muestreo: Cada 6 Check"}  ,
-        {value: 4 , name:"4.".green +"Maxima cantidad de datos almacenados: 20"},
-        {value: 5 , name:"5.".green +"Maxima cantidad de datos almacenados: 50" },
-        {value: 6 , name:"6.".green +"Forzar extraccion de datos"},
-        {value: 7 , name:"7.".green +"Modo Intermitente Check cada 1 minuto  "},
-        {value: 8 , name:"8.".green +"Modo Normal Check cada 15 minutos  "},
-        {value: 9 , name:"9.".green +"Modo Larga duraccion Check cada 30 minutos  "},
+        {value: 1 , name:"1.".green +"Intervalo 5  minutos "},
+        {value: 2 , name:"2.".green +"Intervalo 15 minutos"},
+        {value: 3 , name:"3.".green +"Intervalo 30 minutos"}  ,
+        {value: 4 , name:"4.".green +"Intervalo 60 minutos"},
+        {value: 5 , name:"5.".green +"Almacenar 50 datos" },
+        {value: 6 , name:"6.".green +"Almacenar 150 datos"},
+        {value: 7 , name:"7.".green +"Almacenar 250 datos "},
+        {value: 8 , name:"8.".green +"Forzar descarga  "},
+        {value: 9 , name:"9.".green +"Modo test comandos  "},
         {value: 0 , name:"0.".green +"Cancelar"}
 
         ]
     }
 ]
+
+
+
 
 
 const listElements = [{

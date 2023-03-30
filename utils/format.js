@@ -70,10 +70,10 @@ const getDataFromNmea = (frameData)=>{
             for(let i = 0; i< elements.length; i++){
                 buffer += `\n\t${DATA_FIELD_NMEA[i].underline.gray}:${elements[i].green}`
             } 
+            return data
             return buffer
         }
     const [nmea,sensor]=frameData.split(":")
-   // return (`n${nmea} s ${sensor}`)
     return (`${getData(nmea)} \n\r\t${gettxyz(sensor)} ${"\n".bgWhite.underline.gray}`)
 }
 
