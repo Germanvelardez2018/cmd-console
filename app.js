@@ -23,15 +23,15 @@ require('colors');
 
 cmd_names = [
      "",
-     "Intervalo 5 minutos ",
-     "Intervalo 15 minutos ",
-     "Intervalo 30 minutos ",
+     "Intervalo 20 minutos ",
+     "Intervalo 40 minutos ",
      "Intervalo 60 minutos ",
      "Almacenar 50 ",
      "Almacenar 150 ",
-     "Almacenar 250 ",
-     "Forzar descarga de datos ",
-     "Modo test comandos",
+     "Forzar descarga ",
+     "Modo intensivo (1m) ",
+     "Intervalo 15 minutos ",
+     "Intervalo 30 minutos",
     "Cancelar"
 ]
 
